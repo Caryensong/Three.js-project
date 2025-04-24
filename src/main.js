@@ -29,7 +29,7 @@ scene.add(torus);
 //light
 
 const pointLight = new THREE.PointLight(0xffffff); //hexadezimale Zahl 0x
-pointLight.position.set(5, 10, 0);
+pointLight.position.set(0, 0, 0);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
@@ -40,6 +40,8 @@ scene.add(lightHelper, gridHelper);
 
 const controls = new OrbitControls(camera, renderer.domElement); //CONTROL
 
+
+//stars
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
@@ -54,6 +56,23 @@ function addStar() {
 }
 
 Array(200).fill().forEach(addStar);
+
+const spaceTexture = new THREE.TextureLoader().load('./public/assets/img/space.jpg');
+
+// Erstelle ein Material für den Hintergrund
+const materiale = new THREE.MeshBasicMaterial({
+  map: spaceTexture,
+  color: new THREE.Color(0x00000, 0.2).multiplyScalar(0.1), // Verringert die Helligkeit (dunkler)
+  side: THREE.BackSide // Damit es als Hintergrund funktioniert
+});
+
+// Erstelle eine große Fläche für den Hintergrund
+const backgroundGeometry = new THREE.SphereGeometry(50, 60, 40);
+const backgroundMesh = new THREE.Mesh(backgroundGeometry, materiale);
+
+// Füge das Hintergrundobjekt der Szene hinzu
+scene.add(backgroundMesh);
+
 
 //Animation
 function animate() {
