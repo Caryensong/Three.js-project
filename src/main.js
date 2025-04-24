@@ -72,14 +72,36 @@ const capsule =new THREE.Mesh(
 
 scene.add(capsule);
 
+// Moon
 
-//Animation
+const moonTexture = new THREE.TextureLoader().load('./public/assets/img/moon.jpg');
+const normalTexture = new THREE.TextureLoader().load('./public/assets/img/normal.jpg');
+
+const moon = new THREE.Mesh(
+  new THREE.SphereGeometry(10, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: moonTexture,
+    normalMap: normalTexture,
+  })
+);
+
+scene.add(moon);
+
+moon.position.z = 30;
+moon.position.setX(-10);
+
+
+
+
+//Animation 
 function animate() {
   requestAnimationFrame(animate);
 
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.09;
+  torus.rotation.x += 0.001;
+  torus.rotation.y += 0.009;
   torus.rotation.z += 0.01;
+
+  moon.rotation.x += 0.005;
 
   controls.update();
 
