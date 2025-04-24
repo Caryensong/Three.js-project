@@ -20,7 +20,7 @@ camera.position.setZ(50);
 
 //Object
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+const geometry = new THREE.TorusGeometry(10, 1, 10, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
 const torus = new THREE.Mesh(geometry, material);
 
@@ -57,21 +57,20 @@ function addStar() {
 
 Array(200).fill().forEach(addStar);
 
+//background
 const spaceTexture = new THREE.TextureLoader().load('./public/assets/img/space.jpg');
 
-// Erstelle ein Material für den Hintergrund
-const materiale = new THREE.MeshBasicMaterial({
-  map: spaceTexture,
-  color: new THREE.Color(0x00000, 0.2).multiplyScalar(0.1), // Verringert die Helligkeit (dunkler)
-  side: THREE.BackSide // Damit es als Hintergrund funktioniert
-});
+scene.background =spaceTexture;
 
-// Erstelle eine große Fläche für den Hintergrund
-const backgroundGeometry = new THREE.SphereGeometry(50, 60, 40);
-const backgroundMesh = new THREE.Mesh(backgroundGeometry, materiale);
+//capsule
+const capsuleTexture = new THREE.TextureLoader().load('./public/assets/img/saturn.jpg');
 
-// Füge das Hintergrundobjekt der Szene hinzu
-scene.add(backgroundMesh);
+const capsule =new THREE.Mesh(
+  new THREE.CapsuleGeometry(8,1,30,20),
+  new THREE.MeshBasicMaterial({map: capsuleTexture })
+);
+
+scene.add(capsule);
 
 
 //Animation
@@ -79,7 +78,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   torus.rotation.x += 0.01;
-  torus.rotation.y += 0.005;
+  torus.rotation.y += 0.09;
   torus.rotation.z += 0.01;
 
   controls.update();
