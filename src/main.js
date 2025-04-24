@@ -21,6 +21,8 @@ const torus = new THREE.Mesh( geometry, material );
 
 scene.add( torus );
 
+
+
 // jetzt kommt die Animation
 function animate(){
   requestAnimationFrame(animate);
