@@ -7,3 +7,30 @@ canvas{
 main{
   position: absolute;
 }
+
+
+header {
+  grid-column: 2 / span 5;
+  font-size: 2.5rem;
+  padding: 2rem;
+}
+
+section {
+  grid-column: 2 / 8;
+  padding: 1rem;
+  background: var(--dark-bg);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing);
+  width: 50%;
+}
+
+:root {
+  --dark-bg: rgba(15, 15, 15, 0.575);
+  --spacing: 350px;
+
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #fff;
+}
